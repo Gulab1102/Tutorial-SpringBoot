@@ -1,0 +1,5 @@
+package com.temp.jpa.controller;
+
+public class FileUpload {
+
+}

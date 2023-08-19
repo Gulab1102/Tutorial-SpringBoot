@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	
+	<h1>Welcome to Thymeleaf!!</h1>
+	
+	<h2>Name of the owner is </h2>
+</body>
+</html>

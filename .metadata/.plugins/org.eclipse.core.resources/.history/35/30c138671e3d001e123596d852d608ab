@@ -1,0 +1,140 @@
+package com.test.thymeleaf.controller;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.test.thymeleaf.dao.UserRepo;
+import com.test.thymeleaf.entities.User;
+import com.test.thymeleaf.helper.Message;
+
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class MyController {
+	
+//	@GetMapping("/")
+//	public String about(Model model) {
+//		
+//		model.addAttribute("Name", "Gulab Kumar");
+//		model.addAttribute("Date", new Date().toLocaleString());
+//		return "about";
+//	}
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	
+	@GetMapping("/iterate")
+	public String iterateHandler(Model model) {
+		
+		List<String> of = List.of("Gulab","Priiya","Nandani");
+		
+		model.addAttribute("list", of);
+		
+		
+
+		return "iterate";
+	}
+	
+	
+	@GetMapping("/about")
+	public String old(Model model) {
+		model.addAttribute("title", "Ham Kisi se kam nahi!!");
+		
+		return "about";
+		
+	}
+	
+	@GetMapping("/")
+	public String home(Model model) {
+		model.addAttribute("title", "home - Smart Web");
+		
+		return "home";
+		
+	}
+	
+	@GetMapping("/signup")
+	public String signup(Model model) {
+		model.addAttribute("title", "Register - Smart Web");
+		
+		model.addAttribute("user",new User());
+		
+		return "signup";
+		
+	}
+	@Autowired
+	private UserRepo userrepo;
+	
+	@GetMapping("/test")
+	@ResponseBody
+	public String test() {
+		//model.addAttribute("title", "Register - Smart Web");
+		User user=new User();
+		
+		user.setName("Gkp");
+		user.setEmail("gk@gmail.com");
+		userrepo.save(user);
+		
+		
+		return "working";
+		
+	}
+	
+	@PostMapping("/do_register")
+	public String registerUser(@ModelAttribute("user") User user, 
+		@RequestParam(value = "agreement",defaultValue = "false")boolean agreement,
+		Model model, HttpSession session) {
+		//model.addAttribute("title", "Register - Smart Web");
+		
+	//	model.addAttribute("user",new User());
+		
+		session.setMaxInactiveInterval(1);
+		
+		//System.out.println("agreement :"+agreement);
+		
+		try {
+			if(!agreement) {
+			//	System.out.println("You have not accepted terms and condition!!");
+			 throw	new Exception("You have not accepted terms and condition!!");
+			}
+			user.setRole("USER");
+			
+			//System.out.println("Name-"+user.getName());
+			user.setEnabled(true);
+			user.setRole("USER_ROLE");
+			
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			
+			User result=userrepo.save(user);
+			
+			
+			//System.out.println("Name-"+result);
+			model.addAttribute("user", result);
+			session.setAttribute("message", new Message("Successfully registerd","alert-success"));
+			return "signup";
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			model.addAttribute("user", user);
+			session.setAttribute("message", new Message("Something Went Worng!! "+e.getMessage(),"alert-danger"));
+			
+			// TODO: handle exception
+			return "signup";
+		}
+		
+	}
+	
+	
+	
+
+}

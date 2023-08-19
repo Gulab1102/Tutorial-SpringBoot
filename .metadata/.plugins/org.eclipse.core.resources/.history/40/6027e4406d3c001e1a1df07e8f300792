@@ -1,0 +1,23 @@
+package com.test.thymeleaf.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.test.thymeleaf.entities.User;
+
+@Controller
+@RequestMapping("/user")
+
+public class UserController {
+	
+	@GetMapping("/index")
+	public String dashboard() {
+	
+		
+		return "signup";
+		
+	}
+
+}

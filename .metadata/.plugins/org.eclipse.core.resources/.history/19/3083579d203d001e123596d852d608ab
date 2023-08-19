@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymLeaf.org" th:replace="base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Home</title>
+</head>
+<body>
+	
+	<section >
+		this is Custom Login page !!
+	</section>
+</body>
+</html>

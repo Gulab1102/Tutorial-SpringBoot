@@ -1,0 +1,47 @@
+package com.temp.jpa;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.temp.jpa.entity.Employee;
+import com.temp.jpa.repo.Employeerepo;
+
+@SpringBootApplication
+public class TempexampleApplication {
+
+	public static void main(String[] args) {
+		
+	ApplicationContext contex=	SpringApplication.run(TempexampleApplication.class, args);
+	
+	Employeerepo emplyeerepo= contex.getBean(Employeerepo.class);
+	
+	Employee emp1=new Employee();
+	emp1.setName("Gkp");
+	
+	emp1.setCity("Nke");
+	
+	Employee emp2=new Employee();
+	emp2.setCity("Patna");
+	emp2.setName("Pria Kumari");
+	
+	List<Employee> list= new ArrayList<Employee>();
+	list.add(emp2);
+	
+	list.add(emp1);
+	
+Iterable<Employee> itr=	emplyeerepo.saveAll(list);
+
+itr.forEach(em->{
+	System.out.println(em);
+});
+	
+	
+	
+	
+	}
+
+}

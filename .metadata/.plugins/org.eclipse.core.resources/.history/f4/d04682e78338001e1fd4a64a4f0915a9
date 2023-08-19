@@ -1,0 +1,27 @@
+package com.temp.jpa.repo;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.temp.jpa.entity.Employee;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+
+@Repository
+public class Emplyrepo2 {
+
+	@Autowired
+	private EntityManager entityManager;
+	
+	
+	
+	//@SuppressWarnings("unchecked")
+	public List<Employee> getll(){
+		
+		Query q=entityManager.createNativeQuery("select * from employee");
+		return  q.getResultList();
+	}
+}

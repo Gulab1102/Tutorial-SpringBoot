@@ -1,0 +1,5 @@
+package com.test.thymeleaf.entities;
+
+public class User {
+
+}

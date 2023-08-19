@@ -1,0 +1,58 @@
+package com.temp.jpa.helper;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+@Component
+public class Helper {
+	
+	
+	//public final String UPLOAD_DIR="C:\\Users\\gk960\\eclipse-workspace\\tempexample\\src\\main\\resources\\static\\image";
+	
+	public final String UPLOAD_DIR=new FileSystemResource("src/main/resources/static/image/").getFile().getAbsolutePath();
+	
+	public Helper() throws IOException {
+		
+	}
+	
+	public boolean UploadFile(MultipartFile file) {
+		
+		boolean f=false;
+		
+		try {
+			
+//		InputStream in=	file.getInputStream();
+//		
+//		byte data[]=new byte[in.available()];
+//		in.read(data);
+//		FileOutputStream lo=new FileOutputStream(UPLOAD_DIR+"\\"+file.getOriginalFilename());
+//		lo.write(data);
+//		lo.flush();
+//		lo.close();
+			System.out.println(UPLOAD_DIR);
+			
+		Files.copy(file.getInputStream(),Paths.get(UPLOAD_DIR+File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+		f=true;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return f;
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,23 @@
+package com.test.thymeleaf.entities;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
+@Entity
+public class Contact {
+	
+	private int cId;
+	
+	private String name;
+	private String secondName;
+	
+	private String work;
+	
+	private String email;
+	private String phone;
+	
+	private String image;
+	@Column(length = 50000)
+	private String description;
+
+}

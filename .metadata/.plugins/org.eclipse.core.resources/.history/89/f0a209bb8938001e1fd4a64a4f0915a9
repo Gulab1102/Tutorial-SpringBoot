@@ -1,0 +1,30 @@
+package com.temp.jpa.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.temp.jpa.entity.Employee;
+import com.temp.jpa.repo.Employeerepo;
+
+@RestController
+public class MainController {
+	@Autowired
+	private Employeerepo employeerepo;
+	
+	@GetMapping("/")
+	public ResponseEntity<List<Employee>> getBooks() {
+		
+		return (ResponseEntity<List<Employee>>) employeerepo.findAll();
+		
+		
+		
+		
+		//return "This is books of joy";
+	}
+
+}

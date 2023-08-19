@@ -1,0 +1,52 @@
+package com.temp.jpa.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.temp.jpa.entity.Employee;
+import com.temp.jpa.repo.Employeerepo;
+import com.temp.jpa.repo.Emplyrepo2;
+
+@RestController
+public class MainController {
+	@Autowired
+	private Employeerepo employeerepo;
+	
+	@Autowired
+	private Emplyrepo2 emplyrepo2;
+	
+	@GetMapping("/")
+	public ResponseEntity<List<Employee>> getBooks() {
+		
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(employeerepo.findAll());
+		
+	//	return ResponseEntity.of(Optional.of(employeerepo.findAll()));
+		
+		
+		
+		
+		
+		//return "This is books of joy";
+	}
+	@GetMapping("/get/{id}")
+	public ResponseEntity<String> getQuery(@PathVariable int id){
+		String res=emplyrepo2.getll(id);
+		
+		if(!res.isEmpty()) {
+			
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		return ResponseEntity.ok(res);
+	}
+ 
+}

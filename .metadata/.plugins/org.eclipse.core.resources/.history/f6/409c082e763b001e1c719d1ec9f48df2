@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymLeaf.org" th:replace="base::Layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Home</title>
+</head>
+<body>
+	
+	<section class="banner d-flex justify-content-center align-items-center">
+		<div>
+			<h1 class="font-weight-bold">This is Smart Web</h1>
+			<button>Get Start</button>
+		</div>
+	</section>
+</body>
+</html>

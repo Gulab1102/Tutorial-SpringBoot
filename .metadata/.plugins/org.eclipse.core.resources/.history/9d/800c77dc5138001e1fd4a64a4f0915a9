@@ -1,0 +1,32 @@
+package com.temp.jpa;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+
+import com.temp.jpa.entity.Employee;
+import com.temp.jpa.repo.Employeerepo;
+
+@SpringBootApplication
+public class TempexampleApplication {
+
+	public static void main(String[] args) {
+		
+	ApplicationContext contex=	SpringApplication.run(TempexampleApplication.class, args);
+	
+	Employeerepo emplyeerepo= contex.getBean(Employeerepo.class);
+	
+	Employee emp=new Employee();
+	emp.setName("Gkp");
+	
+	emp.setCity("Nke");
+	
+	Employee emp2=emplyeerepo.save(emp);
+	
+	System.out.println(emp2);
+	
+	
+	}
+
+}

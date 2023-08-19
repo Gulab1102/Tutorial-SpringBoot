@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" html:th="http://www.thymLeaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	
+	
+	<h1 th:text="${list}"></h1>
+	<ul>
+		<li th:each="n : ${list}">
+			<span th:text="${n}">	</span>
+		</li>
+		
+	</ul>
+	
+</body>
+</html>

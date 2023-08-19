@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" html:th="http://www.thymLeaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+<h1>Welcome to Thymeleaf</h1>
+<h1 th:text="${Name}"></h1>	
+<h2 th:text="${Date}"></h2>
+
+<h2>Name of the Owner is <span th:text="${ #strings.toUpperCase(Name)}"></span></h2>
+
+<h2>Length of name is <span th:text="${#strings.length(Name)}"> </span></h2>
+
+
+<div th:with="a=5,b=6,n=${Name}">
+	
+	<h2 th:text="${a}"></h2>
+	
+	<h2></h2>
+	
+	
+	
+</div>
+	
+
+</body>
+</html>

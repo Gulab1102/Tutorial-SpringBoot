@@ -1,0 +1,12 @@
+package com.test.thymeleaf.helper;
+
+import org.hibernate.engine.internal.AbstractEntityEntry;
+import org.springframework.stereotype.Component;
+
+
+
+public class Help {
+	
+	
+
+}

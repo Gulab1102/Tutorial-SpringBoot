@@ -1,0 +1,28 @@
+package com.springboot.jpa;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.springboot.jpa.dao.UserRepo;
+import com.springboot.jpa.entities.User;
+
+@SpringBootApplication
+public class SpringbootjpaApplication {
+
+	public static void main(String[] args) {
+		
+	ApplicationContext contex=	SpringApplication.run(SpringbootjpaApplication.class, args);
+	
+UserRepo userrepo=	contex.getBean(UserRepo.class);
+
+User user=new User();
+
+user.setName("Priya");
+user.setCity("Nke");
+
+User user2=userrepo.save(user);
+	
+	}
+
+}
